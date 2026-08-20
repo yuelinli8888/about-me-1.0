@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Li Yuelin — Product, Growth, AI & Global" />
+    <meta name="theme-color" content="#f4f3f0" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="李玥霖 — 产品、增长、AI 与全球化" />
+    <meta property="og:description" content="李玥霖的个人作品集：从市场洞察、数据诊断到产品与商业化落地。" />
+    <title>LI YUELIN — Product, Growth, AI × Global</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="navigation.css?v=3" />
+    <link rel="stylesheet" href="hero.css?v=3" />
+    <link rel="stylesheet" href="orbit-refinement.css?v=3" />
+    <link rel="stylesheet" href="DepthText.css?v=2" />
+    <link rel="stylesheet" href="hero-rebuild.css?v=2" />
+    <link rel="stylesheet" href="global-refinement.css?v=2" />
+    <link rel="stylesheet" href="homepage-manuscript.css?v=7" />
+    <link rel="stylesheet" href="about-dossier.css?v=8" />
+    <link rel="stylesheet" href="experience-archive.css?v=3" />
+    <link rel="stylesheet" href="capabilities-puzzle.css?v=3" />
+    <link rel="stylesheet" href="capabilities-evidence.css?v=17" />
+    <link rel="stylesheet" href="life-editorial.css?v=1" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro-screen hero" id="intro-screen" aria-label="李玥霖个人网站首页">
+        <div class="hero-copy">
+          <p class="hero-eyebrow">LI YUELIN / 李玥霖</p>
+          <h1 class="hero-motto">保持好奇，把事做成。</h1>
+          <div class="hero-intro-wrap"><p class="hero-intro hero-intro--sizer" aria-hidden="true">hi，我是李玥霖，<br />来自上海财经大学的2027届毕业生。<br /><br />我对复杂的商业问题很好奇，<br />也喜欢把问题想清楚，<br />把答案真正做成产品。</p><p class="hero-intro" id="type-intro" aria-live="polite"><span class="intro-cursor" id="intro-cursor" aria-hidden="true">|</span></p></div>
+          <nav class="hero-nav" aria-label="Homepage navigation">
+            <button type="button" onclick="openPage('about')"><strong>01 关于我</strong><small>ABOUT ME · 我是谁，以及我在寻找什么</small></button>
+            <button type="button" onclick="openPage('experience')"><strong>02 我的经历</strong><small>EXPERIENCE · 从跨境战略，到产品商业化</small></button>
+            <button type="button" onclick="openPage('capabilities')"><strong>03 我的能力</strong><small>CAPABILITIES · 我如何理解问题，并把事情做成</small></button>
+            <button type="button" onclick="openPage('life')"><strong>04 我的生活</strong><small>LIFE · 工作之外，我如何认识世界</small></button>
+          </nav>
+        </div>
+        <div class="orbit-stage" id="orbit-stage" aria-label="李玥霖的个人照片" data-cursor="VIEW">
+          <div class="orbit-guide guide-large" aria-hidden="true"></div>
+          <svg class="orbit-text" viewBox="0 0 700 700" aria-hidden="true"><defs><path id="text-circle" d="M350,350 m-385,0 a385,385 0 1,1 770,0 a385,385 0 1,1 -770,0" /></defs><text><textPath href="#text-circle" startOffset="0%">CURIOUS · BUILDER · AI-NATIVE · PRODUCT THINKING · GROWTH · GLOBAL MINDSET · EXECUTION · USER-CENTRIC · CROSS-CULTURAL · ADAPTIVE · FAST LEARNER · OWNERSHIP · CURIOUS · BUILDER · AI-NATIVE · PRODUCT THINKING · GROWTH · GLOBAL MINDSET · EXECUTION · USER-CENTRIC · CROSS-CULTURAL · ADAPTIVE · FAST LEARNER · OWNERSHIP · </textPath></text></svg>
+          <div class="ring-detail" id="ring-detail" aria-live="polite"><div class="ring-detail__content"><strong></strong><span></span><p></p></div></div>
+          <div class="photo-orbit outer-orbit" id="outer-orbit" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <div class="site-cursor" aria-hidden="true"><span class="site-cursor__dot"></span><span class="site-cursor__ring"></span><small class="site-cursor__label"></small></div>
+
+      <section class="workspace" id="workspace" aria-hidden="true">
+        <aside class="identity-panel">
+          <button class="wordmark" type="button" onclick="goHome()" aria-label="Go to homepage">LI<br />YU<br />ELIN</button>
+          <div class="identity-bottom">
+            <span>SHANGHAI, CHINA<br />2026</span>
+            <a href="mailto:18925072412@163.com" aria-label="发送邮件给李玥霖">SAY HI ↗</a>
+          </div>
+        </aside>
+
+        <section class="content-panel">
+          <header class="topbar progress-nav" id="progress-nav">
+            <nav class="progress-nav__items" aria-label="网站页面导航">
+              <button type="button" data-route="home" onclick="goHome()"><i>00</i><span>首页</span></button>
+              <button type="button" data-route="about" onclick="showView('about')"><i>01</i><span>关于我</span></button>
+              <button type="button" data-route="experience" onclick="showView('experience')"><i>02</i><span>我的经历</span></button>
+              <button type="button" data-route="capabilities" onclick="showView('capabilities')"><i>03</i><span>我的能力</span></button>
+              <button type="button" data-route="life" onclick="showView('life')"><i>04</i><span>我的生活</span></button>
+            </nav>
+            <div class="progress-nav__track" aria-hidden="true"><span class="progress-nav__dot"></span></div>
+          </header>
+
+          <section class="view" id="home" data-title="HOME"></section>
+
+          <section class="view about-view" id="about" data-title="ABOUT">
+            <main class="about-profile" aria-labelledby="about-name">
+              <header class="about-profile__heading">
+                <p>01 / 关于我</p>
+                <h1>ABOUT ME</h1>
+              </header>
+
+              <article class="about-profile__card">
+                <aside class="about-profile__identity">
+                  <figure class="about-profile__photo">
+                    <img src="assets/profile-6575.jpg" alt="李玥霖" />
+                    <figcaption>2027 GRADUATE · SHANGHAI</figcaption>
+                  </figure>
+                  <div class="about-profile__name">
+                    <h2 id="about-name">李玥霖</h2>
+                    <p>LI YUELIN</p>
+                  </div>
+                  <dl class="about-profile__contact">
+                    <div><dt>BASE</dt><dd>上海</dd></div>
+                    <div><dt>WECHAT</dt><dd>lylari3690</dd></div>
+                    <div><dt>EMAIL</dt><dd><a href="mailto:18925072412@163.com">18925072412@163.com</a></dd></div>
+                  </dl>
+                </aside>
+
+                <div class="about-profile__content">
+                  <section class="about-profile__intro">
+                    <p class="about-profile__label">ONE SENTENCE ABOUT ME</p>
+                    <p class="about-profile__lead">我是李玥霖，2027 届上海财经大学会计与智能化硕士。我的路径从会计与商业分析出发，经过跨境市场、用户增长与广告产品，逐渐走向 AI 产品。比起只解释问题，我更希望把判断做成产品，并在真实业务中验证价值。</p>
+                  </section>
+
+                  <section class="about-profile__path" aria-labelledby="about-path-title">
+                    <div class="about-profile__section-head"><p class="about-profile__label" id="about-path-title">MY PATH</p><span>从商业理解走向产品创造</span></div>
+                    <ol>
+                      <li><i>01</i><strong>商业基础</strong><span>会计与战略</span></li>
+                      <li><i>02</i><strong>数据与用户</strong><span>分析与研究</span></li>
+                      <li><i>03</i><strong>增长与商业化</strong><span>策略与产品</span></li>
+                      <li><i>04</i><strong>AI 产品与全球化</strong><span>下一段旅程</span></li>
+                    </ol>
+                  </section>
+
+                  <div class="about-profile__details">
+                    <section class="about-profile__education">
+                      <p class="about-profile__label">EDUCATION</p>
+                      <div><time>2025–2027</time><p><strong>上海财经大学</strong><span>会计与智能化 · 硕士</span></p></div>
+                      <div><time>2021–2025</time><p><strong>上海财经大学</strong><span>会计学（ACCA）· 本科</span></p></div>
+                      <small>GPA 前 20% · 人民奖学金</small>
+                    </section>
+
+                    <section class="about-profile__target">
+                      <p class="about-profile__label">NEXT CHAPTER</p>
+                      <h3>AI 产品经理</h3>
+                      <div><span>AI 出海</span><span>大模型应用</span><span>Agent</span></div>
+                      <p>希望让技术进入真实业务，创造可以被用户与数据验证的价值。</p>
+                    </section>
+                  </div>
+                </div>
+              </article>
+
+              <footer class="about-profile__footer">
+                <p>保持好奇，把事做成。</p>
+                <button class="about-next" type="button" onclick="showView('experience')"><span>NEXT <i>→</i></span><strong>02 我的经历</strong></button>
+              </footer>
+            </main>
+          </section>
+
+          <section class="view experience-view" id="experience" data-title="EXPERIENCE">
+            <header class="experience-heading">
+              <p>02 / 我的经历</p>
+              <h1>EXPERIENCE</h1>
+            </header>
+            <main class="experience-stage" id="experience-stage" aria-label="职业经历档案卡">
+              <div class="experience-carousel" id="experience-carousel" aria-label="职业经历卡片，可拖动浏览">
+                <div class="experience-card-track" id="experience-card-track"></div>
+              </div>
+              <div class="experience-timeline-area">
+                <div class="experience-timeline" id="experience-timeline" aria-label="职业经历时间轴">
+                  <svg viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path d="M 12 88 Q 500 -50 988 88" /></svg>
+                  <div class="experience-timeline-nodes" id="experience-timeline-nodes"></div>
+                </div>
+                <div class="experience-controls" aria-label="切换职业经历">
+                  <button type="button" id="experience-prev">← PREV</button>
+                  <button type="button" id="experience-next">NEXT →</button>
+                </div>
+              </div>
+            </main>
+            <button class="experience-page-next" type="button" onclick="showView('capabilities')"><span>NEXT <i>→</i></span><strong>03 我的能力</strong></button>
+          </section>
+
+          <section class="view capabilities-view" id="capabilities" data-title="CAPABILITIES">
+            <header class="capabilities-heading">
+              <p>03 / 我的能力</p>
+              <h1>CAPABILITIES</h1>
+            </header>
+
+            <div class="capabilities-intro">
+              <h2>把复杂的问题想清楚，把可行的答案真正做出来。</h2>
+            </div>
+
+            <main class="capability-puzzle" aria-label="李玥霖的核心能力">
+              <article class="capability-piece capability-piece--insight">
+                <div class="capability-piece__topline"><span>01 / BUSINESS JUDGEMENT</span><i>↗</i></div>
+                <div class="capability-evidence-layout">
+                  <header class="capability-piece__headline"><h3>商业判断</h3><p>市场与战略</p><svg class="capability-icon" viewBox="0 0 160 96" aria-hidden="true"><g class="sketch-shadow"><path d="M24 73 53 23l29 34 28-39 26 55"/><path d="M18 75h124"/></g><g><path d="M21 70 51 20l30 34 28-39 28 55"/><path d="M16 72h126"/><circle cx="51" cy="20" r="5"/><circle cx="81" cy="54" r="5"/><circle cx="109" cy="15" r="5"/><path d="m118 25 16-10-4 18"/></g></svg></header>
+                  <section class="capability-evidence"><span class="capability-evidence__label">FROM EXPERIENCE</span><strong class="capability-evidence__tag">战略分析 · Shopee</strong><ul><li>快速切入跨境电商多个细分赛道，搭建<mark class="capability-keyword">市场与竞对分析框架</mark></li><li>建设<mark class="capability-keyword">跨境行业数据库</mark>，<mark class="capability-keyword">交叉验证多源信息</mark>并追踪前沿动态</li><li>完成<mark class="capability-keyword">拉美年度研究与多份英文专题报告</mark>，支持团队年度规划</li></ul></section>
+                </div>
+              </article>
+
+              <article class="capability-piece capability-piece--diagnose">
+                <div class="capability-piece__topline"><span>02 / DATA ANALYSIS</span><i>↗</i></div>
+                <div class="capability-evidence-layout capability-evidence-layout--reverse">
+                  <section class="capability-evidence"><span class="capability-evidence__label">FROM EXPERIENCE</span><strong class="capability-evidence__tag">商业分析 · 美团</strong><ul><li>使用<mark class="capability-keyword">SQL、透视表</mark>清洗拆解用户数据，搭建<mark class="capability-keyword">多维经营看板</mark></li><li>采用<mark class="capability-keyword">变动、下钻与控制变量分析</mark>，定位<mark class="capability-keyword">商详渗透下降根因</mark></li><li>设计并执行<mark class="capability-keyword">用户调研</mark>，结合竞品研究提炼<mark class="capability-keyword">需求与产品机会</mark></li></ul></section>
+                  <header class="capability-piece__headline"><h3>数据分析</h3><p>指标与用户</p><svg class="capability-icon" viewBox="0 0 160 96" aria-hidden="true"><g class="sketch-shadow"><path d="M25 76V55h21v21M57 76V39h21v37M89 76V25h21v51"/><circle cx="119" cy="35" r="18"/><path d="m132 48 16 16"/></g><g><path d="M22 73V52h21v21M54 73V36h21v37M86 73V22h21v51M17 74h97"/><circle cx="116" cy="32" r="18"/><path d="m129 45 16 16M107 33l7 6 12-16"/></g></svg></header>
+                </div>
+              </article>
+
+              <article class="capability-piece capability-piece--design">
+                <div class="capability-piece__topline"><span>03 / DRIVE &amp; DELIVER</span><i>↗</i></div>
+                <div class="capability-evidence-layout">
+                  <header class="capability-piece__headline"><h3>沟通推动<br />结果导向</h3><p>协同与落地</p><svg class="capability-icon" viewBox="0 0 160 96" aria-hidden="true"><g class="sketch-shadow"><path d="M20 23h66v39H54L37 76V62H20zM91 33h48v32h-12v13l-15-13H91"/></g><g><path d="M17 20h66v39H51L34 73V59H17zM88 30h48v32h-12v13l-15-13H88"/><path d="M29 34h40M29 45h27M99 43h26M99 52h18"/></g></svg></header>
+                  <section class="capability-evidence"><span class="capability-evidence__label">FROM EXPERIENCE</span><strong class="capability-evidence__tag">产品经理 · 字节跳动 &amp; 美团</strong><ul><li>协调<mark class="capability-keyword">业务、研发、设计与横向产品</mark>，明确<mark class="capability-keyword">职责边界与交付标准</mark></li><li>将复杂目标拆解为<mark class="capability-keyword">KR、项目路径与优先级</mark>，推动多方<mark class="capability-keyword">按节点落地</mark></li><li>以<mark class="capability-keyword">实验数据</mark>推动<mark class="capability-keyword">方案共识</mark></li><li><mark class="capability-keyword">复盘结果</mark>并持续校准<mark class="capability-keyword">产品策略</mark></li></ul></section>
+                </div>
+              </article>
+
+              <article class="capability-piece capability-piece--deliver">
+                <div class="capability-piece__topline"><span>04 / GROWTH &amp; MONETIZATION</span><i>↗</i></div>
+                <div class="capability-growth-layout capability-growth-layout--reverse">
+                  <section class="capability-evidence capability-evidence--split"><span class="capability-evidence__label">FROM EXPERIENCE</span><div class="capability-evidence__columns"><div><strong class="capability-evidence__tag">用户增长</strong><ul><li>C 端产品用户增长玩法：<mark class="capability-keyword">签到、裂变、Widget、抽卡、大红包、新人活动</mark>等</li><li>ROI 优化：测算并优化<mark class="capability-keyword">裂变、导量等活动的 ROI</mark></li><li>用户体验优化：优化<mark class="capability-keyword">登录、Widget 等用户链路</mark>，提高<mark class="capability-keyword">留存率</mark></li></ul></div><div><strong class="capability-evidence__tag">广告商业化</strong><ul><li>深入<mark class="capability-keyword">流量、供给、竞价与投放链路</mark>，推进计划新建与<mark class="capability-keyword">竞价优化</mark></li><li>提升广告收入：从<mark class="capability-keyword">供给和流量双端</mark>入手，提升<mark class="capability-keyword">商家买量和广告曝光</mark></li><li>广告体验优化：通过<mark class="capability-keyword">智能头图、标签</mark>等优化用户和商家的<mark class="capability-keyword">广告体验</mark></li><li>广告 Case 排查：通过<mark class="capability-keyword">日志等数据</mark>，快速定位和解决<mark class="capability-keyword">系统问题</mark></li></ul></div></div></section>
+                  <header class="capability-piece__headline"><h3>增长 &amp;<br />商业化</h3><p>增长与广告</p><svg class="capability-icon" viewBox="0 0 160 96" aria-hidden="true"><g class="sketch-shadow"><path d="M20 76h31V62h29V47h29V31h27M108 19h28v28"/></g><g><path d="M17 73h31V59h29V44h29V28h27M105 16h28v28"/><path d="m92 33 41-17M24 62l18-13 22 4 24-22"/><circle cx="24" cy="62" r="4"/><circle cx="42" cy="49" r="4"/><circle cx="64" cy="53" r="4"/><circle cx="88" cy="31" r="4"/></g></svg></header>
+                </div>
+              </article>
+            </main>
+
+            <footer class="capabilities-footer">
+              <div class="capabilities-toolkit" aria-label="工具与方法">
+                <span class="capabilities-toolkit__label">TOOLKIT</span>
+                <div class="capabilities-toolkit__chips"><span>SQL</span><span>Excel</span><span>数据分析</span><span>PPT</span><span>Think-cell</span><span>ProcessOn</span><span>公开信息研究</span></div>
+              </div>
+              <button class="capabilities-next" type="button" onclick="showView('life')"><span>NEXT <i>→</i></span><strong>04 我的生活</strong></button>
+            </footer>
+          </section>
+
+          <section class="view life-view" id="life" data-title="LIFE">
+            <header class="life-heading">
+              <p>04 / 我的生活</p>
+              <h1>LIFE</h1>
+            </header>
+
+            <div class="life-intro">
+              <h2>工作之外，我如何认识世界。</h2>
+              <p>通过城市、山野、电影、食物和音乐。</p>
+            </div>
+
+            <main class="life-collage" aria-label="李玥霖的生活片段">
+              <figure class="life-theme life-theme--travel">
+                <img src="assets/life-travel.jpg" alt="李玥霖在旅行途中" />
+                <figcaption><span>01 / TRAVEL</span><h3>旅行</h3><p>去陌生的地方，也换一个角度看世界。</p><small>城市漫游 · 海外旅行 · 在地体验</small></figcaption>
+              </figure>
+
+              <figure class="life-theme life-theme--move">
+                <img src="assets/life-move.jpg" alt="李玥霖在山野徒步" />
+                <figcaption><span>02 / MOVE</span><h3>运动</h3><p>喜欢身体在动，也喜欢山野带来的自由感。</p><small>登山 · 户外 · 健身</small><em>OUTDOOR · 往山里走。</em></figcaption>
+              </figure>
+
+              <figure class="life-theme life-theme--culture">
+                <img src="assets/photo-12.jpeg" alt="李玥霖在艺术展览中" />
+                <figcaption><span>03 / CULTURE</span><h3>文艺</h3><p>在电影和展览里，看看别人的世界。</p><small>电影 · 展览 · 艺术空间</small></figcaption>
+              </figure>
+
+              <figure class="life-theme life-theme--taste">
+                <div class="life-taste-photos"><img class="life-taste-photos__food" src="assets/life-taste-food.jpg" alt="城市里的美食" /><img class="life-taste-photos__bar" src="assets/life-taste-bar.jpg" alt="小酒吧里的李玥霖" /></div>
+                <figcaption><span>04 / TASTE</span><h3>探店</h3><p>喜欢认真吃饭，也喜欢找到城市里有意思的小地方。</p><small>饭馆 · 小酒吧 · 城市探店</small></figcaption>
+              </figure>
+
+              <figure class="life-theme life-theme--rhythm">
+                <img src="assets/life-rhythm.jpg" alt="李玥霖演奏架子鼓" />
+                <figcaption><span>05 / RHYTHM</span><h3>鼓手</h3><p>把节奏交给鼓点。</p><small>DRUMS · MUSIC · RHYTHM</small></figcaption>
+              </figure>
+            </main>
+
+            <footer class="life-ending">
+              <p>保持好奇，把事做成。</p>
+              <button type="button" onclick="goHome()"><span>BACK TO HOME <i>↗</i></span><strong>回到首页</strong></button>
+            </footer>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script src="script.js?v=22"></script>
+  </body>
+</html>

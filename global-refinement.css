@@ -1,0 +1,18 @@
+:root{--page-bg:#f6f6f8;--paper:#fff;--text-primary:#29282a;--text-secondary:rgba(41,40,42,.58);--text-tertiary:rgba(41,40,42,.36);--line-subtle:rgba(41,40,42,.08);--ink:var(--text-primary);--line:var(--line-subtle);--lilac:var(--paper);--orange:var(--paper);--blue:var(--paper);--green:var(--paper)}
+html,body,.app-shell{background:var(--page-bg)!important;color:var(--text-primary)}
+.workspace,.content-panel,.identity-panel,.view,.topbar,.why,.life{background:var(--page-bg)!important;color:var(--text-primary)!important}
+.identity-panel,.topbar,.route-grid,.route,.journey-panel,.capability-list,.capability,.why-layout article,.work-layout,.case-card,.life-layout,.life-photo,.life-note,.profile-card{border-color:var(--line-subtle)!important}
+.route,.profile-card,.case-card,.overlap-card,.life-photo,.life-note,.why-layout article,.why-layout article.overlap-card{background:var(--paper)!important;color:var(--text-primary)!important}
+.route:hover,.route-why:hover,.route-work:hover,.route-life:hover,.capability.active{background:var(--text-primary)!important;color:var(--paper)!important}
+.skill-tags b{border-color:var(--line-subtle)!important}.why-layout article span,.why .section-number,.why .topbar,.why .view-heading{color:var(--text-primary)!important}
+.home-footer,.identity-bottom,.route small,.route span,.case-type,.case-footer,.panel-label,.kicker,.crumb{color:var(--text-secondary)}
+.wordmark,.topbar button,.resume{color:var(--text-primary)}
+/* A clear, consistent focus treatment keeps every navigation path usable by keyboard. */
+:where(button, a, [role="button"]):focus-visible {
+  outline: 2px solid #b75530;
+  outline-offset: 4px;
+}
+
+.experience-card:focus-visible {
+  border-radius: 18px;
+}

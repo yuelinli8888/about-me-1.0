@@ -1,0 +1,16 @@
+/* Final single-orbit system: one photo ring, one word ring. */
+.hero::before,.guide-offset,.guide-center,.orbit-details,.inner-orbit{display:none!important}
+.orbit-stage{width:clamp(580px,52vw,760px);height:clamp(580px,52vw,760px);right:clamp(-35px,1vw,10px);animation:none}
+.guide-large{z-index:0;inset:15%;border-color:rgba(41,38,32,.055)}
+.orbit-text{z-index:3;inset:0;width:100%;height:100%;animation:text-ccw 58s linear infinite}
+.orbit-text text{font-size:clamp(10px,.8vw,12px);font-weight:500;letter-spacing:.17em;fill:rgba(41,38,32,.52)}
+.outer-orbit{z-index:2;width:clamp(500px,43vw,580px);height:clamp(500px,43vw,580px);border-color:rgba(41,38,32,.055);animation-duration:42s}
+.outer-orbit .polaroid-motion{animation:none!important;transform:rotate(90deg)}
+.orbit-position.uniform .polaroid{position:relative;width:clamp(86px,7.2vw,116px);height:clamp(108px,9vw,145px);padding:0;background:#fff;box-shadow:0 7px 20px rgba(61,53,43,.065);overflow:hidden}
+.orbit-position.uniform .polaroid img{position:absolute;left:clamp(6px,.48vw,8px);top:clamp(6px,.48vw,8px);width:calc(100% - clamp(12px,.96vw,16px));height:calc(100% - clamp(22px,1.75vw,28px));object-fit:cover;filter:saturate(.92) contrast(.97) brightness(1.02)}
+.orbit-position.uniform .polaroid figcaption{display:none}
+.orbit-stage:hover .outer-orbit,.orbit-stage:hover .outer-orbit .polaroid-motion{animation-duration:52s}
+.orbit-stage:hover .orbit-text{animation-duration:68s}
+@keyframes text-ccw{to{transform:rotate(-360deg)}}
+@media(max-width:900px){.orbit-stage{width:clamp(500px,54vw,620px);height:clamp(500px,54vw,620px);right:-55px}.outer-orbit{width:clamp(420px,45vw,500px);height:clamp(420px,45vw,500px)}.orbit-position.uniform .polaroid{width:clamp(72px,7.2vw,96px)}}
+@media(max-width:680px){html,body{width:100%;overflow-x:hidden;overflow-y:auto}.hero{width:100%;min-width:0;overflow:hidden}.hero::before{display:none}.orbit-stage{width:min(92vw,560px);height:min(92vw,560px);right:auto}.outer-orbit{width:min(76vw,440px);height:min(76vw,440px)}.orbit-text{inset:9%;width:82%;height:82%}.orbit-position.uniform .polaroid{width:clamp(58px,15vw,78px);height:clamp(73px,19vw,98px)}.hero-copy{width:100%}}

@@ -1,0 +1,15 @@
+/* Extra editorial treatment drawn from the supplied FORA reference. */
+.intro{border-bottom:1px solid var(--ink)}
+.intro:before{width:48vw;height:100%;right:0;top:0;background:#e0bfe8;border-radius:0;opacity:1;filter:none}
+.intro-brand{font:clamp(86px,13vw,206px)/.7 var(--serif);letter-spacing:-.12em;position:absolute;left:clamp(20px,3.8vw,60px);top:14%;z-index:0}
+.intro-copy{position:absolute;left:75%;top:38%;margin:0;width:20%;z-index:4}
+.intro h1{font-size:clamp(26px,2.4vw,42px)}
+.portrait-wrap{left:59%;width:min(27vw,410px);height:min(43vw,530px)}
+.logo{font:28px/.7 var(--serif);letter-spacing:-.08em}
+@media(max-width:720px){
+  .intro:before{width:100%;height:44%;top:auto;bottom:0}
+  .intro-brand{font-size:130px;top:13%;left:20px}
+  .intro-copy{position:static;align-self:start;margin:19vh 0 0 42vw;width:auto}
+  .intro h1{font-size:31px}
+  .portrait-wrap{left:auto;right:10%;top:62%;transform:translate(0,-40%);width:50vw;height:67vw}
+}

@@ -1,0 +1,8 @@
+.wordmark{display:block;text-decoration:none}
+.topbar nav a{font:11px var(--mono);text-decoration:none}
+.close-view{display:grid;place-items:center;text-decoration:none}
+.content-panel:has(.view:target) .view.active{display:none}
+.content-panel:has(.view:target) .view:target{display:flex;flex-direction:column;animation:view-in .38s both}
+.content-panel:has(.view:target) .close-view{opacity:1;pointer-events:auto}
+.route{text-decoration:none}
+.intro-screen[hidden]{display:none}
