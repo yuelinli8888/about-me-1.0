@@ -4,6 +4,56 @@ const crumb = document.querySelector('#crumb');
 const views = [...document.querySelectorAll('.view')];
 const progressNav = document.querySelector('#progress-nav');
 const routeOrder = ['home', 'about', 'experience', 'capabilities', 'life'];
+const contactDetails = {
+  phone: { value: '18925072412', success: '电话号码已复制' },
+  email: { value: '18925072412@163.com', success: '邮箱已复制' }
+};
+
+async function copyContact(trigger, type) {
+  const actionGroup = trigger.closest('.contact-actions');
+  const status = actionGroup?.querySelector('.contact-actions__status');
+  const label = trigger.querySelector('[data-action-label]');
+  const originalLabel = label?.textContent || '复制';
+  const detail = contactDetails[type];
+  if (!detail) return;
+
+  const copyWithFallback = () => {
+    const textarea = document.createElement('textarea');
+    textarea.value = detail.value;
+    textarea.setAttribute('readonly', '');
+    textarea.style.cssText = 'position:fixed;left:-9999px;opacity:0';
+    document.body.append(textarea);
+    textarea.select();
+    const copied = document.execCommand('copy');
+    textarea.remove();
+    return copied;
+  };
+
+  try {
+    let copied = false;
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(detail.value);
+        copied = true;
+      } catch (error) {
+        copied = copyWithFallback();
+      }
+    }
+    if (!copied) copied = copyWithFallback();
+    if (!copied) throw new Error('copy failed');
+
+    if (label) label.textContent = '已复制 ✓';
+    if (status) status.textContent = detail.success;
+  } catch (error) {
+    if (label) label.textContent = '复制失败';
+    if (status) status.textContent = `请手动复制：${detail.value}`;
+  }
+
+  window.setTimeout(() => {
+    if (label) label.textContent = originalLabel;
+    if (status) status.textContent = '';
+  }, 2200);
+}
 
 function updateProgressNavigation(route) {
   if (!progressNav) return;
@@ -17,119 +67,127 @@ function updateProgressNavigation(route) {
   progressNav.dataset.route = route;
 }
 
-const heroPhotos = [
-  { image: 'assets/photo-01.jpg', title: '上海财经大学', experience: '学业经历 · 2021–2027', description: '把视野延伸到商业与产品。', target: 'university', angle: 0, tilt: -3 },
-  { image: 'assets/photo-02.jpg', title: 'Shopee', experience: '战略分析 · 2024', description: '从市场和竞争出发，第一次学会向外看。', target: 'shopee', angle: 60, tilt: 2 },
-  { image: 'assets/photo-04.jpg', title: '美团', experience: '商业分析 · 2025', description: '从数据走进用户，理解一个业务问题为什么发生。', target: 'meituan-analysis', angle: 120, tilt: -2 },
-  { image: 'assets/photo-06.jpg', title: '字节跳动', experience: '增长产品 · 2025', description: '把用户行为拆成策略，用实验真正推动增长。', target: 'bytedance-growth', angle: 180, tilt: 3 },
-  { image: 'assets/photo-09.jpeg', title: '美团', experience: '商业化产品 · 2025–26', description: '第一次站在产品、商家与收入之间寻找平衡。', target: 'meituan-commercialization', angle: 240, tilt: -1 },
-  { image: 'assets/photo-12.jpeg', title: '字节跳动', experience: '广告产品 · 2026', description: '把复杂的广告策略变清楚，也开始用 AI 解决真实业务问题。', target: 'bytedance-ads', angle: 300, tilt: 2 }
+const heroTags = [
+  { label: '好奇', en: 'CURIOUS', description: '对陌生领域保持兴趣，愿意主动追问事情为什么发生。', size: 'large', tone: 'peach', x: 8, y: 13, rotate: -5, dx: 7, dy: -5, duration: 7.6 },
+  { label: '结果导向', en: 'OUTCOME', description: '关注方案是否真正改变业务，而不只停在过程完成。', size: 'medium', tone: 'paper', x: 83, y: 13, rotate: 4, dx: -6, dy: 6, duration: 8.4 },
+  { label: '执行力', en: 'EXECUTION', description: '把判断迅速转化为行动，持续追踪节点与最终交付。', size: 'medium', tone: 'sage', x: 40, y: 24, rotate: -2, dx: 5, dy: 6, duration: 9.1 },
+  { label: '复盘与迭代', en: 'REFLECT & ITERATE', description: '从结果中识别偏差，用新信息持续校准下一步行动。', size: 'small', tone: 'blue', x: 94, y: 28, rotate: 5, dx: -6, dy: 4, duration: 8.2 },
+  { label: '自我觉察', en: 'SELF AWARE', description: '看见自己的优势、局限与情绪，保持诚实的自我反馈。', size: 'small', tone: 'paper', x: 4, y: 31, rotate: 4, dx: 5, dy: -4, duration: 8.7 },
+  { label: '敏锐', en: 'PERCEPTIVE', description: '从细微信号和变化中，快速捕捉真正值得关注的问题。', size: 'small', tone: 'peach', x: 5, y: 47, rotate: -5, dx: 5, dy: 5, duration: 9.4 },
+  { label: '复杂问题简单化', en: 'SIMPLIFY COMPLEXITY', description: '找到关键矛盾，搭建清晰框架并拆成可执行路径。', size: 'medium', tone: 'sage', x: 92, y: 44, rotate: -3, dx: -5, dy: -6, duration: 8.1 },
+  { label: '用户视角', en: 'USER CENTRIC', description: '从真实行为与使用场景出发，理解需求为什么发生。', size: 'small', tone: 'paper', x: 3, y: 63, rotate: 5, dx: 6, dy: -4, duration: 7.7 },
+  { label: '数据驱动', en: 'DATA INFORMED', description: '用数据定位问题、验证假设，同时保留业务判断。', size: 'medium', tone: 'blue', x: 94, y: 60, rotate: 3, dx: -6, dy: 5, duration: 8.9 },
+  { label: 'AI 工具', en: 'AI TOOLS', description: '主动使用大模型与智能工具，提升研究、分析和执行效率。', size: 'large', tone: 'ink', x: 6, y: 76, rotate: -4, dx: 5, dy: 5, duration: 9.2 },
+  { label: '快速学习', en: 'FAST LEARNER', description: '面对新业务先搭框架、补信息，再快速进入问题现场。', size: 'small', tone: 'paper', x: 44, y: 73, rotate: 5, dx: 7, dy: -4, duration: 7.7 },
+  { label: 'Owner 意识', en: 'OWNERSHIP', description: '主动补位、追踪结果，并对最终交付负责。', size: 'small', tone: 'sage', x: 88, y: 76, rotate: -5, dx: -5, dy: 4, duration: 8.9 },
+  { label: '协同推动', en: 'ALIGN & SHIP', description: '在不同角色之间对齐目标、边界与交付标准。', size: 'small', tone: 'blue', x: 2, y: 91, rotate: 3, dx: -4, dy: -5, duration: 8.3 },
+  { label: '高效沟通', en: 'COMMUNICATE', description: '抓住关键信息，用对方易理解的方式推动共识。', size: 'small', tone: 'peach', x: 30, y: 91, rotate: -3, dx: 5, dy: 3, duration: 9.5 },
+  { label: '旅行', en: 'TRAVEL', description: '去陌生的地方，也换一个角度理解世界。', size: 'tiny', tone: 'paper', x: 58, y: 91, rotate: -4, dx: 5, dy: 3, duration: 9.5 },
+  { label: '户外运动', en: 'OUTDOOR', description: '喜欢身体在动，也喜欢山野带来的自由感。', size: 'tiny', tone: 'sage', x: 80, y: 91, rotate: 6, dx: -5, dy: -4, duration: 7.8 },
+  { label: '电影与展览', en: 'CULTURE', description: '在影像和展览里，看见不同的人与不同的世界。', size: 'tiny', tone: 'peach', x: 98, y: 87, rotate: 8, dx: -6, dy: 5, duration: 8.6 }
 ];
 
-const RING_STEP_DURATION = 860;
-const ACTIVE_HOLD_DURATION = 3000;
-const RING_RESUME_DELAY = 1200;
-let activePhotoIndex = 0;
-let autoplayTimer;
-let resumeTimer;
-let detailTimer;
-let ringIsPaused = false;
+function renderHeroTagField() {
+  const stage = document.querySelector('#tag-stage');
+  const cloud = document.querySelector('#hero-tag-cloud');
+  const detail = document.querySelector('#hero-tag-detail');
+  if (!stage || !cloud || !detail) return;
 
-function renderPhotoRing() {
-  const ring = document.querySelector('#outer-orbit');
-  const stage = document.querySelector('#orbit-stage');
-  const detail = document.querySelector('#ring-detail');
-  const content = detail.querySelector('.ring-detail__content');
-  const detailTitle = content.querySelector('strong');
-  const detailMeta = content.querySelector('span');
-  const detailDescription = content.querySelector('p');
-  const cards = [];
-  let rotationStep = 0;
+  const detailContent = detail.querySelector('.hero-tag-detail__content');
+  const defaultDetail = detailContent.innerHTML;
+  const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let activeTag = null;
+  let pinnedTag = null;
+  let detailTimer;
 
-  const fillDetail = photo => {
-    detailTitle.textContent = photo.title;
-    detailMeta.textContent = photo.experience;
-    detailDescription.textContent = photo.description;
+  cloud.innerHTML = heroTags.map((tag, index) => `
+    <button class="hero-tag hero-tag--${tag.size} hero-tag--${tag.tone}" type="button" data-index="${index}" data-cursor="READ" aria-label="${tag.label}：${tag.description}" aria-pressed="false" style="--tag-x:${tag.x}%;--tag-y:${tag.y}%;--tag-rotate:${tag.rotate}deg;--drift-x:${tag.dx}px;--drift-y:${tag.dy}px;--drift-duration:${tag.duration}s;--drift-delay:${index * -.43}s">
+      <span class="hero-tag__float"><span class="hero-tag__surface"><strong>${tag.label}</strong><small>${tag.en}</small></span></span>
+    </button>`).join('');
+
+  const tags = [...cloud.querySelectorAll('.hero-tag')];
+
+  const resetRepulsion = () => tags.forEach(tag => {
+    tag.style.setProperty('--repel-x', '0px');
+    tag.style.setProperty('--repel-y', '0px');
+  });
+
+  const applyRepulsion = source => {
+    if (prefersReducedMotion || innerWidth <= 720) return;
+    const sourceRect = source.getBoundingClientRect();
+    const sourceX = sourceRect.left + sourceRect.width / 2;
+    const sourceY = sourceRect.top + sourceRect.height / 2;
+    tags.forEach(tag => {
+      if (tag === source) return;
+      const rect = tag.getBoundingClientRect();
+      const dx = rect.left + rect.width / 2 - sourceX;
+      const dy = rect.top + rect.height / 2 - sourceY;
+      const distance = Math.max(1, Math.hypot(dx, dy));
+      const strength = Math.max(0, (190 - distance) / 190) * 18;
+      tag.style.setProperty('--repel-x', `${(dx / distance) * strength}px`);
+      tag.style.setProperty('--repel-y', `${(dy / distance) * strength}px`);
+    });
   };
 
-  const updateDetail = (photo, immediate = false) => {
+  const updateDetail = item => {
     window.clearTimeout(detailTimer);
-    if (immediate) {
-      fillDetail(photo);
-      detail.classList.remove('is-leaving');
-      detail.classList.add('is-visible');
-      return;
-    }
-    detail.classList.remove('is-visible');
-    detail.classList.add('is-leaving');
+    detail.classList.add('is-switching');
     detailTimer = window.setTimeout(() => {
-      fillDetail(photo);
-      detail.classList.remove('is-leaving');
-      requestAnimationFrame(() => detail.classList.add('is-visible'));
-    }, RING_STEP_DURATION - 55);
+      detailContent.innerHTML = item ? `<span>${item.en} · PERSONAL NOTE</span><strong>${item.label}</strong><p>${item.description}</p>` : defaultDetail;
+      detail.classList.toggle('has-active-tag', Boolean(item));
+      detail.classList.remove('is-switching');
+    }, 90);
   };
 
-  const clearAutoplay = () => window.clearTimeout(autoplayTimer);
-
-  const scheduleNext = () => {
-    clearAutoplay();
-    if (ringIsPaused || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    autoplayTimer = window.setTimeout(() => {
-      activatePhoto((activePhotoIndex + 1) % heroPhotos.length);
-    }, ACTIVE_HOLD_DURATION);
+  const activateTag = tag => {
+    if (activeTag === tag) return;
+    activeTag?.classList.remove('is-active');
+    activeTag = tag;
+    tag.classList.add('is-active');
+    stage.classList.add('has-active-tag');
+    applyRepulsion(tag);
+    updateDetail(heroTags[Number(tag.dataset.index)]);
   };
 
-  const activatePhoto = (index, immediate = false) => {
-    const nextIndex = ((index % heroPhotos.length) + heroPhotos.length) % heroPhotos.length;
-    const photo = heroPhotos[nextIndex];
-    const forwardSteps = (nextIndex - activePhotoIndex + heroPhotos.length) % heroPhotos.length;
-    const isSamePhoto = forwardSteps === 0;
-    if (!immediate) rotationStep += forwardSteps;
-    activePhotoIndex = nextIndex;
-    cards.forEach((card, cardIndex) => card.classList.toggle('is-selected', cardIndex === nextIndex));
-    ring.style.setProperty('--orbit-turn', `${-90 - (rotationStep * 60)}deg`);
-    if (immediate) {
-      updateDetail(photo, true);
-      return;
-    }
-    if (!isSamePhoto) updateDetail(photo);
-    clearAutoplay();
-    window.clearTimeout(resumeTimer);
-    window.setTimeout(() => scheduleNext(), RING_STEP_DURATION);
+  const clearActiveTag = () => {
+    if (pinnedTag) return;
+    activeTag?.classList.remove('is-active');
+    activeTag = null;
+    stage.classList.remove('has-active-tag');
+    resetRepulsion();
+    updateDetail(null);
   };
 
-  heroPhotos.forEach((photo, index) => {
-    const position = document.createElement('div');
-    position.className = 'orbit-position uniform';
-    position.style.setProperty('--angle', `${photo.angle}deg`);
-    position.style.setProperty('--tilt', `${photo.tilt}deg`);
-    position.style.setProperty('--radius', '50%');
-    position.innerHTML = `<div class="polaroid-motion"><figure class="polaroid" data-cursor="VIEW"><img src="${photo.image}" alt="${photo.title}" loading="eager"></figure></div>`;
-    ring.append(position);
-    const card = position.querySelector('.polaroid');
-    cards.push(card);
-    card.addEventListener('pointerenter', () => {
-      ringIsPaused = true;
-      clearAutoplay();
-      activatePhoto(index);
+  tags.forEach(tag => {
+    tag.addEventListener('pointerenter', () => activateTag(tag));
+    tag.addEventListener('pointerleave', clearActiveTag);
+    tag.addEventListener('focus', () => activateTag(tag));
+    tag.addEventListener('blur', clearActiveTag);
+    tag.addEventListener('click', event => {
+      event.stopPropagation();
+      if (pinnedTag === tag) {
+        tag.classList.remove('is-pinned');
+        tag.setAttribute('aria-pressed', 'false');
+        pinnedTag = null;
+        clearActiveTag();
+        return;
+      }
+      pinnedTag?.classList.remove('is-pinned');
+      pinnedTag?.setAttribute('aria-pressed', 'false');
+      pinnedTag = tag;
+      tag.classList.add('is-pinned');
+      tag.setAttribute('aria-pressed', 'true');
+      activateTag(tag);
     });
   });
 
-  stage.addEventListener('pointerenter', () => {
-    ringIsPaused = true;
-    clearAutoplay();
-    window.clearTimeout(resumeTimer);
+  stage.addEventListener('click', event => {
+    if (event.target.closest('.hero-tag')) return;
+    pinnedTag?.classList.remove('is-pinned');
+    pinnedTag?.setAttribute('aria-pressed', 'false');
+    pinnedTag = null;
+    clearActiveTag();
   });
-  stage.addEventListener('pointerleave', () => {
-    window.clearTimeout(resumeTimer);
-    resumeTimer = window.setTimeout(() => {
-      ringIsPaused = false;
-      scheduleNext();
-    }, RING_RESUME_DELAY);
-  });
-
-  activatePhoto(0, true);
-  scheduleNext();
 }
 
 const experienceData = [
@@ -147,7 +205,7 @@ const experienceData = [
   {
     company: '美团', role: '商业分析', keywords: '经营分析 · 用户研究 · 数据体系',
     period: '2025.03–2025.07', timeline: '2025', photo: 'assets/experience-02-meituan-ba.jpg', photoPosition: '50% 54%',
-    workedOn: '参与大众点评经营分析与经营规划，重点研究景点、酒店商详页渗透下降问题。',
+    workedOn: '参与大众点评经营分析与经营规划。重点研究流量侧的变动问题。',
     did: [
       '使用 SQL 拆解流量、用户结构及行为路径，定期归因核心指标变动',
       '结合用户调研与竞品研究，梳理找店、看攻略、做记录三类旅游需求',
@@ -169,7 +227,7 @@ const experienceData = [
   {
     company: '美团', role: '商业化策略产品经理', keywords: '广告产品 · 供给策略 · 收入增长',
     period: '2025.11–2026.02', timeline: '2025–26', photo: 'assets/experience-04-meituan-monetization.jpg', photoPosition: '50% 55%',
-    workedOn: '负责到店广告产品优化，覆盖创意供给、商家购买量、广告过滤与收入监控。',
+    workedOn: '参与到店广告产品优化，覆盖创意供给、商家购买量、广告过滤与收入监控。',
     did: [
       '拓展广告素材库，在 B、C 两端接入算法优选，实现请求粒度的个性化头图',
       '将固定购买量档位改为动态建议值，引导商家提高购买量',
@@ -181,7 +239,7 @@ const experienceData = [
   {
     company: '字节跳动', role: '广告产品经理', keywords: '投放系统 · 竞价策略 · AI Agent',
     period: '2026.04–2026.06', timeline: '2026', photo: 'assets/experience-05-bytedance-ads.jpg', photoPosition: '50% 51%',
-    workedOn: '负责短剧行业广告投放系统与竞价策略优化，兼顾商家投放效果和平台收益。',
+    workedOn: '参与短剧行业广告投放系统与竞价策略优化，兼顾商家投放效果和平台收益。',
     did: [
       '梳理投放策略的触发条件、优先级与执行链路，定位策略冗余及新建失败问题',
       '设计自动化排障 Agent，串联素材状态与策略命中信息，输出失败归因和处理建议',
@@ -477,6 +535,62 @@ function setRouteHash(id, replace = false) {
   else if (location.hash !== (id === 'home' ? '' : `#${id}`)) history.pushState({ route: id }, '', nextUrl);
 }
 
+function setupCapabilityGuidance() {
+  const puzzle = document.querySelector('.capability-map');
+  if (!puzzle) return;
+  const pieces = [...puzzle.querySelectorAll('.capability-piece')];
+  const firstPiece = pieces[0];
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let guidancePlayed = false;
+  let guidanceCancelled = false;
+  let openTimer;
+  let closeTimer;
+
+  const closeGuidance = () => {
+    window.clearTimeout(openTimer);
+    window.clearTimeout(closeTimer);
+    firstPiece?.classList.remove('is-guided');
+  };
+
+  const cancelGuidance = () => {
+    guidanceCancelled = true;
+    closeGuidance();
+  };
+
+  puzzle.addEventListener('pointerenter', cancelGuidance, { once: true });
+
+  pieces.forEach(piece => {
+    piece.addEventListener('click', event => {
+      if (matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+      const willOpen = !piece.classList.contains('is-open');
+      pieces.forEach(item => item.classList.remove('is-open'));
+      piece.classList.toggle('is-open', willOpen);
+      event.stopPropagation();
+    });
+    piece.addEventListener('keydown', event => {
+      if (!['Enter', ' '].includes(event.key)) return;
+      event.preventDefault();
+      piece.click();
+    });
+  });
+
+  document.addEventListener('click', event => {
+    if (event.target.closest('.capability-piece')) return;
+    pieces.forEach(piece => piece.classList.remove('is-open'));
+  });
+
+  window.activateCapabilityGuidance = () => {
+    if (guidancePlayed || guidanceCancelled || reducedMotion || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    guidancePlayed = true;
+    closeGuidance();
+    openTimer = window.setTimeout(() => {
+      if (guidanceCancelled) return;
+      firstPiece?.classList.add('is-guided');
+      closeTimer = window.setTimeout(() => firstPiece?.classList.remove('is-guided'), 1200);
+    }, 600);
+  };
+}
+
 function showView(id, options = {}) {
   if (id === 'home') return goHome();
   const target = document.getElementById(id);
@@ -486,6 +600,7 @@ function showView(id, options = {}) {
   workspace.classList.add('detail-open');
   updateProgressNavigation(id);
   if (id === 'experience') window.activateExperienceCarousel?.();
+  if (id === 'capabilities') window.activateCapabilityGuidance?.();
   setRouteHash(id, options.replaceHistory);
 }
 
@@ -603,8 +718,9 @@ function enableCustomCursor() {
   requestAnimationFrame(frame);
 }
 
-renderPhotoRing();
+renderHeroTagField();
 renderExperienceCarousel();
+setupCapabilityGuidance();
 typeIntroOnce();
 enableCustomCursor();
 

@@ -1,0 +1,27 @@
+:root{--contact-accent:var(--accent,#b75530);--contact-ink:var(--text-primary,#171717);--contact-muted:rgba(23,23,23,.48);--contact-line:rgba(23,23,23,.14);--contact-paper:rgba(255,255,255,.56)}
+.contact-actions{position:relative;display:flex;align-items:center;gap:8px;width:max-content;max-width:100%}
+.contact-actions--hero{margin-top:clamp(18px,2.4vh,26px)}
+.contact-action{display:inline-flex!important;align-items:center!important;flex-direction:row!important;gap:8px!important;min-height:36px;margin:0!important;border:1px solid var(--contact-line)!important;border-radius:999px!important;padding:8px 13px!important;background:var(--contact-paper)!important;color:var(--contact-ink)!important;text-decoration:none!important;font:500 11px/1 var(--sans)!important;letter-spacing:.01em!important;box-shadow:0 4px 15px rgba(23,23,23,.025);cursor:pointer;transition:transform .25s ease,border-color .25s ease,background .25s ease,box-shadow .25s ease!important}
+.contact-action i{color:var(--contact-accent);font:500 15px/1 var(--home-mono);font-style:normal}
+.contact-action small{color:var(--contact-muted);font:500 8px/1 var(--home-mono);letter-spacing:.08em}
+.contact-action:hover{transform:translateY(-2px);border-color:rgba(183,85,48,.34)!important;background:#fff!important;box-shadow:0 7px 20px rgba(23,23,23,.055)}
+.contact-action:focus-visible{outline:2px solid var(--contact-accent);outline-offset:3px}
+.contact-actions__status{position:absolute;left:4px;top:calc(100% + 6px);margin:0!important;color:var(--contact-accent)!important;font:500 9px/1.2 var(--home-mono)!important;letter-spacing:.035em;white-space:nowrap}
+.hero-nav{margin-top:clamp(26px,3.4vh,40px)}
+.life-ending__right{display:flex;align-items:flex-end;gap:clamp(22px,3vw,44px)}
+.life-contact-panel{position:relative;padding:9px 11px 10px;border:1px solid rgba(183,85,48,.24);border-radius:14px;background:rgba(255,255,255,.88);box-shadow:0 10px 25px rgba(41,34,28,.08)}
+.life-contact-panel>p{margin:0 0 7px!important;color:var(--life-accent)!important;font:500 8px/1 var(--life-mono)!important;letter-spacing:.11em}
+.contact-actions--life{margin-bottom:0}
+.contact-actions--life .contact-action:first-child{border-color:var(--contact-accent)!important;background:var(--contact-accent)!important;color:#fff!important}
+.contact-actions--life .contact-action:first-child i,.contact-actions--life .contact-action:first-child small{color:rgba(255,255,255,.82)}
+.contact-actions--life .contact-action:first-child:hover{background:#9f482a!important;color:#fff!important}
+.life-ending .contact-action{align-items:center!important}
+.life-ending .life-back-home{display:flex;flex-direction:column;align-items:flex-end;gap:5px;border:0;padding:0;background:transparent;color:var(--life-accent);font:500 11px/1.2 var(--life-mono);letter-spacing:.075em;cursor:pointer;transition:opacity .3s ease,text-shadow .3s ease}
+.life-ending .life-back-home span i{display:inline-block;font-size:16px;font-style:normal;vertical-align:-1px;transition:transform .32s cubic-bezier(.22,1,.36,1)}
+.life-ending .life-back-home strong{color:var(--life-ink);font:400 15px/1.2 var(--home-serif);letter-spacing:.012em}
+.life-ending .life-back-home:hover{text-shadow:0 0 17px rgba(183,85,48,.28)}
+.life-ending .life-back-home:hover span i{transform:translate(5px,-5px)}
+@media(max-width:1080px){.life-ending__right{gap:16px}.contact-action{padding-inline:11px!important}.contact-action small{display:none}}
+@media(max-width:760px){.contact-actions{flex-wrap:wrap}.contact-actions--hero{margin-top:20px}.hero-nav{margin-top:30px}.life-ending{align-items:flex-start!important;flex-direction:column;gap:22px!important}.life-ending__right{width:100%;align-items:flex-start;justify-content:space-between}.contact-actions--life{flex-wrap:wrap}.life-ending .life-back-home{flex:0 0 auto}.contact-actions__status{white-space:normal;min-width:210px}}
+@media(max-width:480px){.life-ending__right{flex-direction:column;gap:24px}.life-ending .life-back-home{align-items:flex-start}.contact-action{font-size:10px!important}}
+@media(prefers-reduced-motion:reduce){.contact-action,.life-back-home span i{transition:none!important}}

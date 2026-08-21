@@ -1,0 +1,349 @@
+/* Concise capability map: quiet by default, evidence appears on interaction. */
+.workspace .view.capabilities-view.active{
+  grid-template-rows:auto auto minmax(440px,1fr) auto;
+}
+
+.capability-puzzle.capability-map{
+  width:min(82vw,1240px);
+  height:100%;
+  min-height:440px;
+  grid-template-rows:1fr 1fr;
+}
+
+.capabilities-view .capabilities-footer{min-height:38px}
+.capabilities-view .capabilities-toolkit{flex:1;max-width:none;gap:12px}
+.capabilities-view .capabilities-toolkit__chips{flex-wrap:nowrap;gap:6px}
+.capabilities-view .capabilities-toolkit__label,
+.capabilities-view .capabilities-toolkit__chips span{font-size:11px}
+.capabilities-view .capabilities-toolkit__chips span{min-height:29px;padding:5px 10px}
+.capabilities-view .capabilities-next{font-size:11px}
+.capabilities-view .capabilities-next strong{font-size:15px}
+
+.capability-map .capability-piece{
+  overflow:visible;
+  min-height:0;
+  padding:18px 27px 20px;
+}
+
+.capability-map .capability-piece__topline{
+  padding-bottom:8px;
+  font-size:11px;
+}
+
+.capability-map .capability-piece__topline i{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.capability-map .capability-piece__topline i::before{
+  content:"HOVER / TAP 查看经历";
+  color:rgba(23,23,23,.43);
+  font:500 8px/1 var(--cap-mono);
+  letter-spacing:.07em;
+  white-space:nowrap;
+}
+
+.capability-map__body{
+  position:relative;
+  min-height:0;
+  flex:1;
+}
+
+.capability-map .capability-piece__headline{
+  position:absolute;
+  top:17px;
+  left:0;
+  z-index:2;
+  display:block;
+  width:70%;
+  min-height:0;
+  margin:0;
+  text-align:left;
+  transition:opacity .28s ease,transform .34s cubic-bezier(.22,1,.36,1),filter .28s ease;
+}
+
+.capability-map .capability-piece__headline h3{
+  margin:0;
+  font:400 clamp(28px,2.15vw,34px)/1 var(--home-serif);
+  letter-spacing:.012em;
+  white-space:nowrap;
+}
+
+.capability-map .capability-piece__headline p{
+  margin:6px 0 0;
+  color:rgba(23,23,23,.55);
+  font:500 10px/1.2 var(--cap-mono);
+  letter-spacing:.075em;
+}
+
+.capability-map__keywords{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:22px;
+}
+
+.capability-map__keywords span{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  border:1px solid rgba(23,23,23,.16);
+  border-radius:12px 9px 13px 8px;
+  padding:5px 11px;
+  background:rgba(255,255,255,.31);
+  color:rgba(23,23,23,.72);
+  font:500 11px/1 var(--cap-mono);
+  letter-spacing:.025em;
+  box-shadow:2px 3px 0 rgba(23,23,23,.045);
+}
+
+.capability-map__keywords span:nth-child(2){transform:rotate(-1deg)}
+.capability-map__keywords span:nth-child(3){transform:rotate(.7deg)}
+
+.capability-map .capability-icon{
+  position:absolute;
+  top:auto;
+  right:2px;
+  bottom:2px;
+  left:auto;
+  width:clamp(86px,7vw,106px);
+  margin:0;
+  opacity:.66;
+  transform:rotate(-1deg);
+  transition:opacity .28s ease,transform .36s cubic-bezier(.22,1,.36,1),filter .28s ease;
+}
+
+.capability-map .capability-piece--diagnose .capability-icon,
+.capability-map .capability-piece--design .capability-icon,
+.capability-map .capability-piece--deliver .capability-icon{
+  top:auto;
+  right:2px;
+  bottom:2px;
+  left:auto;
+  transform:rotate(1deg);
+}
+
+.capability-proof{
+  --proof-rotate:-.7deg;
+  position:absolute;
+  z-index:7;
+  top:14px;
+  right:4px;
+  width:min(64%,380px);
+  min-height:145px;
+  border:1px solid rgba(23,23,23,.14);
+  border-radius:18px 14px 21px 12px;
+  padding:17px 19px 16px;
+  background:rgba(250,247,240,.97);
+  box-shadow:5px 7px 0 rgba(183,85,48,.09),0 18px 32px rgba(35,30,25,.1);
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(9px) rotate(var(--proof-rotate)) scale(.97);
+  transition:opacity .24s ease,transform .36s cubic-bezier(.22,1,.36,1);
+}
+
+.capability-piece--diagnose .capability-proof,
+.capability-piece--deliver .capability-proof{--proof-rotate:.65deg}
+
+.capability-proof::before{
+  content:"";
+  position:absolute;
+  top:-6px;
+  left:30px;
+  width:54px;
+  height:13px;
+  background:rgba(224,205,180,.65);
+  transform:rotate(-5deg);
+}
+
+.capability-proof>span{
+  display:block;
+  margin-bottom:7px;
+  color:rgba(183,85,48,.72);
+  font:500 8px/1.2 var(--cap-mono);
+  letter-spacing:.1em;
+}
+
+.capability-proof>strong{
+  display:inline-block;
+  margin-bottom:10px;
+  color:rgba(23,23,23,.75);
+  font:500 11px/1.2 var(--cap-mono);
+  letter-spacing:.025em;
+}
+
+.capability-proof ul{
+  display:grid;
+  gap:7px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.capability-proof li{
+  position:relative;
+  padding-left:14px;
+  color:rgba(23,23,23,.82);
+  font:400 clamp(12px,.88vw,14px)/1.28 var(--home-serif);
+  letter-spacing:.005em;
+}
+
+.capability-proof li::before{
+  content:"";
+  position:absolute;
+  top:.36em;
+  left:0;
+  width:7px;
+  height:8px;
+  border-radius:3px 5px 3px 4px;
+  background:rgba(23,23,23,.72);
+  transform:rotate(-7deg);
+}
+
+.capability-proof--split>div{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.capability-proof--split section{
+  min-width:0;
+}
+
+.capability-proof--split section+section{
+  border-left:1px dashed rgba(23,23,23,.16);
+  padding-left:14px;
+}
+
+.capability-proof--split strong{
+  display:block;
+  margin-bottom:6px;
+  font:500 12px/1.2 var(--cap-mono);
+}
+
+.capability-proof--split p{
+  margin:0;
+  color:rgba(23,23,23,.78);
+  font:400 clamp(11px,.82vw,13px)/1.35 var(--home-serif);
+}
+
+@media (hover:hover) and (min-width:761px){
+  .capability-map .capability-piece:hover .capability-piece__headline,
+  .capability-map .capability-piece:focus-visible .capability-piece__headline{
+    opacity:.11;
+    filter:blur(1.5px);
+    transform:translateX(-5px);
+  }
+
+  .capability-map .capability-piece:hover .capability-icon,
+  .capability-map .capability-piece:focus-visible .capability-icon{
+    opacity:.12;
+    transform:translateY(4px) rotate(2deg) scale(.94);
+  }
+
+  .capability-map .capability-piece:hover .capability-proof,
+  .capability-map .capability-piece:focus-visible .capability-proof{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0) rotate(var(--proof-rotate)) scale(1);
+  }
+}
+
+.capability-map:has(.capability-piece.is-guided) .capability-piece:not(.is-guided){
+  opacity:.68;
+  filter:grayscale(.42) saturate(.5) brightness(1.03);
+}
+
+.capability-map .capability-piece.is-guided{
+  z-index:9;
+  filter:grayscale(0) saturate(1.08) brightness(1.015);
+  box-shadow:inset 0 0 0 1px rgba(82,74,62,.18),inset 0 1px rgba(255,255,255,.45),0 7px 0 rgba(87,72,58,.08),0 18px 34px rgba(35,30,25,.11),0 0 30px rgba(183,85,48,.13);
+  transform:translate(-3px,-3px) scale(1.012);
+}
+
+.capability-map .capability-piece.is-guided .capability-piece__headline{
+  opacity:.11;
+  filter:blur(1.5px);
+  transform:translateX(-5px);
+}
+
+.capability-map .capability-piece.is-guided .capability-icon{
+  opacity:.12;
+  transform:translateY(4px) rotate(2deg) scale(.94);
+}
+
+.capability-map .capability-piece.is-guided .capability-proof{
+  opacity:1;
+  transform:translateY(0) rotate(var(--proof-rotate)) scale(1);
+}
+
+.capability-map .capability-piece:focus-visible{
+  outline:2px solid rgba(183,85,48,.42);
+  outline-offset:-4px;
+}
+
+@media (max-height:900px) and (min-width:761px){
+  .workspace .view.capabilities-view{overflow:hidden}
+  .workspace .view.capabilities-view.active{grid-template-rows:auto auto minmax(430px,1fr) auto}
+  .capability-puzzle.capability-map{min-height:430px}
+}
+
+@media (min-width:761px) and (max-width:1100px){
+  .capability-puzzle.capability-map{min-height:520px;grid-template-rows:1fr 1fr}
+  .capability-map .capability-piece{padding:17px 22px 18px}
+  .capability-proof{width:68%;padding:15px 16px}
+  .capability-proof li{font-size:12px}
+  .capabilities-view .capabilities-toolkit__chips{flex-wrap:wrap}
+}
+
+@media (max-width:760px){
+  .workspace .view.capabilities-view.active{display:flex}
+  .capability-puzzle.capability-map{
+    grid-template-columns:1fr;
+    grid-template-rows:none;
+    width:100%;
+    height:auto;
+    min-height:0;
+    margin-top:18px;
+  }
+
+  .capability-map .capability-piece{
+    min-height:225px;
+    border-radius:16px!important;
+    padding:20px 22px 22px;
+  }
+
+  .capability-map .capability-piece--deliver{min-height:225px}
+  .capability-map .capability-piece::before,
+  .capability-map .capability-piece::after{display:none}
+  .capability-map__body{display:flex;flex-direction:column}
+  .capability-map .capability-piece__headline{position:relative;top:auto;left:auto;width:100%}
+  .capability-map .capability-icon{right:2px;bottom:auto;top:10px;width:82px;opacity:.45}
+  .capability-map .capability-piece--diagnose .capability-icon,
+  .capability-map .capability-piece--design .capability-icon,
+  .capability-map .capability-piece--deliver .capability-icon{top:10px;right:2px;bottom:auto}
+  .capability-map .capability-piece__topline i::before{content:"TAP 查看经历"}
+  .capability-proof{position:relative;top:auto;right:auto;overflow:hidden;width:100%;max-height:0;min-height:0;margin-top:0;border-width:0;padding:0 17px;opacity:0;transform:translateY(5px) rotate(var(--proof-rotate));pointer-events:none;transition:max-height .38s cubic-bezier(.22,1,.36,1),margin .3s ease,padding .3s ease,opacity .22s ease,transform .34s cubic-bezier(.22,1,.36,1)}
+  .capability-map .capability-piece.is-open{min-height:350px}
+  .capability-map .capability-piece--deliver.is-open{min-height:390px}
+  .capability-map .capability-piece.is-open .capability-proof{max-height:260px;margin-top:23px;border-width:1px;padding:17px;opacity:1;transform:rotate(var(--proof-rotate));pointer-events:auto}
+  .capability-map .capability-piece--deliver.is-open .capability-proof{max-height:300px}
+  .capability-proof--split>div{gap:12px}
+  .capabilities-view .capabilities-toolkit{max-width:calc(100% - 110px)}
+  .capabilities-view .capabilities-toolkit__chips{flex-wrap:wrap}
+}
+
+@media (max-width:420px){
+  .capability-map .capability-piece{min-height:225px}
+  .capability-map .capability-piece--deliver{min-height:225px}
+  .capability-map .capability-piece.is-open{min-height:390px}
+  .capability-map .capability-piece--deliver.is-open{min-height:450px}
+  .capability-proof--split>div{grid-template-columns:1fr}
+  .capability-proof--split section+section{border-top:1px dashed rgba(23,23,23,.16);border-left:0;padding-top:10px;padding-left:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .capability-map .capability-piece__headline,.capability-map .capability-icon,.capability-proof{transition:none!important}
+}
